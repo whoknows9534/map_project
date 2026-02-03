@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Responsive Center</title>
+
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        button {
+            border: none;
+            background: none;
+            padding: 0;
+        }
+
+        img {
+            width: 80vw;        /* 60% من عرض الشاشة */
+            max-width: 9900px;   /* حد أقصى */
+            min-width: 200px;   /* حد أدنى */
+            height: auto;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <button type="button">
+        <img src="MAP.png" alt="Click me">
+    </button>
+
+</body>
+</html>
