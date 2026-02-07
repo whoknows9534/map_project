@@ -39,31 +39,39 @@
       cursor: pointer;
     }
 
-    /* Bottom info box */
-    .info-box {
-      display: none;
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      background: #222;
-      color: #fff;
-      padding: 15px;
-      text-align: right;
-      font-size: 18px;
-      box-shadow: 0 -2px 10px rgba(0,0,0,0.5);
-    }
+   <div id="infoBox" class="info-box">
+    <img id="infoImage" src="" alt="" style="width:100%; height:auto;">
+   </div>
   </style>
 </head>
 <body>
 
 <div class="container">
-  <img src="Images\Map.png" alt="Click me">
+  <img src="Images\Map.jpeg" alt="Click me">
 
   <!-- clickable areas -->
-  <button class="click-area" style="top: 0%; left: 5%; width: 100%; height: 100%;" data-info="هذا النص لمنطقة 1"></button>
-  <button class="click-area" style="top: 40%; left: 50%; width: 12%; height: 12%;" data-info="هذا النص لمنطقة 2"></button>
-  <button class="click-area" style="top: 70%; left: 30%; width: 15%; height: 15%;" data-info="هذا النص لمنطقة 3"></button>
+ <button class="click-area"
+  style="top: 0%; left: 5%; width: 100%; height: 100%;"
+  data-img="Images/middle_1.png">
+ </button>
+
+ <button class="click-area"
+  style="top: 40%; left: 50%; width: 12%; height: 12%;"
+  data-img="Images/west_1.png">
+ </button>
+
+ <button class="click-area"
+  style="top: 70%; left: 30%; width: 15%; height: 15%;"
+  data-img="Images/east_1.png">
+ </button>
+ <button class="click-area"
+  style="top: 70%; left: 30%; width: 15%; height: 15%;"
+  data-img="Images/south_1">
+ </button>
+ <button class="click-area"
+  style="top: 70%; left: 30%; width: 15%; height: 15%;"
+  data-img="Images/north_1.png">
+ </button>
 </div>
 
 <div id="infoBox" class="info-box"></div>
@@ -89,6 +97,7 @@
 
 </body>
 </html>
+
 
 
 
