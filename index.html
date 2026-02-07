@@ -53,13 +53,6 @@
 
     z-index: 999;
   }
-
-
-    .info-box img {
-     width: 750%;
-      height: auto;
-      display: block;
-    }
     
     body::after {
       content: "";
@@ -111,7 +104,7 @@
   document.querySelectorAll(".click-area").forEach(btn => {
     btn.addEventListener("click", function(e) {
       e.stopPropagation();
-      infoImage.src = this.dataset.img;
+      img.src = this.dataset.img;
       infoBox.style.display = "block";
       document.body.classList.add("show-overlay");
     });
@@ -130,6 +123,7 @@
 
 </body>
 </html>
+
 
 
 
