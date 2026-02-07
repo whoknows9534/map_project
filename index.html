@@ -40,11 +40,12 @@
   .info-box {
     display: none;
     position: fixed;
+    z-index: 1000;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
   
-    background: rgba(0, 0, 0, 225);
+    background: rgba(1, 1, 1, 1);
     padding: 20px;
     border-radius: 12px;
 
@@ -60,7 +61,7 @@
       inset: 0;
       background: rgba(0,0,0,0.4);
       opacity: 0;
-      pointer-events: none;
+      pointer-events: auto;
      transition: opacity 0.3s;
     }  
 
@@ -104,7 +105,7 @@
   document.querySelectorAll(".click-area").forEach(btn => {
     btn.addEventListener("click", function(e) {
       e.stopPropagation();
-      img.src = this.dataset.img;
+      infoImage.src = this.dataset.img; // ← التصحيح هنا
       infoBox.style.display = "block";
       document.body.classList.add("show-overlay");
     });
@@ -121,8 +122,10 @@
 </script>
 
 
+
 </body>
 </html>
+
 
 
 
