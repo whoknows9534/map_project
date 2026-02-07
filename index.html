@@ -29,7 +29,29 @@
       height: auto;
       display: block;
     }
-    #infoImage {width:80%;background: transparent;}
+    .container {
+  position: relative;
+}
+
+#infoImage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  display: none;
+  background: transparent;
+  z-index: 2; /* on top of the map */
+}
+
+#overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: none;
+  z-index: 1;
+}
+
 
     .click-area {
       position: absolute;
@@ -45,49 +67,54 @@
   <!-- MAP IMAGE -->
   <img id="mapImage" src="Images/Map.jpeg" alt="Map">
 
+  <div id="overlay"></div>
+
   <!-- INFO IMAGE (hidden) -->
-  <img id="infoImage" src="" alt="" style="display:none;background:transparent;width:80%;">
+  <img id="infoImage" src="" alt="">
 
   <button class="click-area"
-    style="top:0%; left:0%; width:100%; height:100%;"
+    style="top:47.5%; left:45%; width:13%; height:7%;"
     data-img="Images/middle_1.PNG"></button>
 
   <button class="click-area"
-    style="top:0%; left:0%; width:0%; height:0%;"
+    style="top:49%; left:25%; width:13%; height:7%;"
     data-img="Images/west_1.PNG"></button>
 
   <button class="click-area"
-    style="top:0%; left:0%; width:0%; height:0%;"
-    data-img="Images/east_1.PNG"></button>
+    style="top:30%; left:27%; width:13%; height:7%;"
+    data-img="Images/north_1.PNG"></button>
 
   <button class="click-area"
-    style="top:0%; left:0%; width:0%; height:0%;"
+    style="top:62%; left:41%; width:13%; height:7%;"
     data-img="Images/south_1.PNG"></button>
 
   <button class="click-area"
-    style="top:0%; left:0%; width:0%; height:0%;"
-    data-img="Images/north_1.PNG"></button>
+    style="top:55%; left:72%; width:13%; height:7%;"
+    data-img="Images/east_1.PNG"></button>
 </div>
 
 <script>
   const mapImage = document.getElementById("mapImage");
   const infoImage = document.getElementById("infoImage");
+  const overlay = document.getElementById("overlay");
 
   document.querySelectorAll(".click-area").forEach(btn => {
     btn.addEventListener("click", function(e) {
       e.stopPropagation();
       infoImage.src = this.dataset.img;
       infoImage.style.display = "flex";
+      overlay.style.display = "block";
     });
   });
 
+
   document.addEventListener("click", function() {
     infoImage.style.display = "none";
+    overlay.style.display = "none";
   });
 </script>
 
 </body>
 </html>
-
 
 
