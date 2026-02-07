@@ -77,18 +77,17 @@
     btn.addEventListener("click", function(e) {
       e.stopPropagation();
       infoImage.src = this.dataset.img;
-      mapImage.style.display = "none";
-      infoImage.style.display = "block";
+      infoImage.style.display = "flex";
     });
   });
 
   document.addEventListener("click", function() {
     infoImage.style.display = "none";
-    mapImage.style.display = "block";
   });
 </script>
 
 </body>
 </html>
+
 
 
