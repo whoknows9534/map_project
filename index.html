@@ -36,51 +36,16 @@
       border: none;
       cursor: pointer;
     }
-
-  .info-box {
-    display: none;
-    position: fixed;
-    z-index: 1000;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  
-    background: rgba(225, 225, 225, 1);
-    padding: 20px;
-    border-radius: 12px;
-
-    max-width: 95vw;
-    max-height: 95vh;
-
-    z-index: 999;
-  }
-  #infoBox {
-   width: 100vw;
-  }
-
-  #infoBox img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-    body::after {
-      content: "";
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.4);
-      opacity: 0;
-      pointer-events: auto;
-     transition: opacity 0.3s;
-    }  
-
-    body.show-overlay::after {opacity: 1;}
   </style>
 </head>
 <body>
 
 <div class="container">
-  <img src="Images/Map.jpeg" alt="Map">
+  <!-- MAP IMAGE -->
+  <img id="mapImage" src="Images/Map.jpeg" alt="Map">
+
+  <!-- INFO IMAGE (hidden) -->
+  <img id="infoImage" src="" alt="" style="display:none;">
 
   <button class="click-area"
     style="top:0%; left:0%; width:100%; height:100%;"
@@ -103,40 +68,24 @@
     data-img="Images/north_1.png"></button>
 </div>
 
-<div id="infoBox" class="info-box">
-  <img id="infoImage" src="" alt="">
-</div>
-
 <script>
-  const infoBox = document.getElementById("infoBox");
+  const mapImage = document.getElementById("mapImage");
   const infoImage = document.getElementById("infoImage");
 
   document.querySelectorAll(".click-area").forEach(btn => {
     btn.addEventListener("click", function(e) {
       e.stopPropagation();
-      infoImage.src = this.dataset.img; // ← التصحيح هنا
-      infoBox.style.display = "block";
-      document.body.classList.add("show-overlay");
+      infoImage.src = this.dataset.img;
+      mapImage.style.display = "none";
+      infoImage.style.display = "block";
     });
   });
 
   document.addEventListener("click", function() {
-    infoBox.style.display = "none";
-    document.body.classList.remove("show-overlay");
-  });
-
-  infoBox.addEventListener("click", function(e) {
-    e.stopPropagation();
+    infoImage.style.display = "none";
+    mapImage.style.display = "block";
   });
 </script>
 
-
-
 </body>
 </html>
-
-
-
-
-
-
