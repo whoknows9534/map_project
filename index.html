@@ -29,9 +29,6 @@
       height: auto;
       display: block;
     }
-    .container {
-  position: relative;
-}
 
 #infoImage {
   position: absolute;
@@ -59,11 +56,27 @@
       border: none;
       cursor: pointer;
     }
+    .info-area {
+      position: absolute;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      display:none;
+       z-index: 3;
+    }
+    .info-switch {
+      position: absolute;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      display:none;
+      z-index: 4;
+    }
   </style>
 </head>
 <body>
 
-<div class="container">
+<div class="container" id="container0">
   <!-- MAP IMAGE -->
   <img id="mapImage" src="Images/Map.jpeg" alt="Map">
 
@@ -72,50 +85,92 @@
   <!-- INFO IMAGE (hidden) -->
   <img id="infoImage" src="" alt="">
 
+  <button class="info-area" id="infoarea"
+    style="top:10%; left:10%; width:81%; height:75%;"
+    ></button>
+  <button class="info-switch"id="switch-1"
+    style="top:75%; left:70%; width:20%; height:10%;"
+    data-num="1"
+    ></button>
+  <button class="info-switch"id="switch-2"
+    style="top:75%; left:40%; width:20%; height:10%;"
+    data-num="2"
+    ></button>
+  <button class="info-switch"id="switch-3"
+    style="top:75%; left:10%; width:20%; height:10%;"
+    data-num="3"
+    ></button>
+
   <button class="click-area"
     style="top:47.5%; left:45%; width:13%; height:7%;"
-    data-img="Images/middle_1.PNG"></button>
+    data-prefix="middle"></button>
 
   <button class="click-area"
     style="top:49%; left:25%; width:13%; height:7%;"
-    data-img="Images/west_1.PNG"></button>
+    data-prefix="west"></button>
 
   <button class="click-area"
     style="top:33%; left:24%; width:13%; height:7%;"
-    data-img="Images/north_1.PNG"></button>
+    data-prefix="north"></button>
 
   <button class="click-area"
     style="top:62%; left:41%; width:13%; height:7%;"
-    data-img="Images/south_1.PNG"></button>
+    data-prefix="south"></button>
 
   <button class="click-area"
     style="top:55%; left:72%; width:13%; height:7%;"
-    data-img="Images/east_1.PNG"></button>
+    data-prefix="east"></button>
 </div>
 
 <script>
   const mapImage = document.getElementById("mapImage");
   const infoImage = document.getElementById("infoImage");
+  const infoArea = document.getElementById("infoarea");
   const overlay = document.getElementById("overlay");
+  const switches = {
+    middle: document.getElementById("switch-1"),
+    west: document.getElementById("switch-2"),
+    north: document.getElementById("switch-3"),
+  };
+  let currentPrefix = "";
+  let currentNum = "1";
 
   document.querySelectorAll(".click-area").forEach(btn => {
     btn.addEventListener("click", function(e) {
       e.stopPropagation();
-      infoImage.src = this.dataset.img;
-      infoImage.style.display = "flex";
-      overlay.style.display = "block";
+      currentNum = "1";
+      currentPrefix = this.dataset.prefix;
+      showImage();
     });
   });
 
+  document.querySelectorAll(".info-switch").forEach(btn => {
+    btn.addEventListener("click", function(e) {
+      e.stopPropagation();
+      currentNum = this.dataset.num;
+      showImage();
+    });
+  });
 
-  document.addEventListener("click", function() {
+  function showImage() {
+    if(currentPrefix  == "east" && currentNum == "3"){"Images/east_4";}
+    else{infoImage.src = `Images/${currentPrefix}_${currentNum}.PNG`;}
+    infoImage.style.display = "block";
+    infoArea.style.display = "block";
+    overlay.style.display = "block";
+    Object.values(switches).forEach(s => s.style.display = "block");
+    e.stopPropagation();
+  }
+
+infoArea.addEventListener("click", function(e) {e.stopPropagation();});
+
+  infoImage.addEventListener("click", function() {
     infoImage.style.display = "none";
     overlay.style.display = "none";
+    infoArea.style.display = "none";
+    Object.values(switches).forEach(s => s.style.display = "none");
   });
 </script>
 
 </body>
 </html>
-
-
-
