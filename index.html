@@ -38,20 +38,34 @@
     }
 
     .info-box {
-      display: none;
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      background: #222;
-      padding: 10px;
-      text-align: center;
+     display: none;
+     position: fixed;
+     top: 50%;
+     left: 50%;
+     transform: translate(-50%, -50%);
+     background: rgba(0, 0, 0, 0.85);
+     padding: 15px;
+     border-radius: 10px;
+     z-index: 999;
     }
 
     .info-box img {
-      max-width: 100%;
-      height: auto;
+     max-width: 90vw;
+     max-height: 90vh;
+     height: auto;
     }
+    
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.4);
+      opacity: 0;
+      pointer-events: none;
+     transition: opacity 0.3s;
+    }  
+
+    body.show-overlay::after {opacity: 1;}
   </style>
 </head>
 <body>
@@ -93,13 +107,21 @@
       e.stopPropagation();
       infoImage.src = this.dataset.img;
       infoBox.style.display = "block";
+      document.body.classList.add("show-overlay");
     });
   });
 
   document.addEventListener("click", function() {
     infoBox.style.display = "none";
+    document.body.classList.remove("show-overlay");
+  });
+
+  infoBox.addEventListener("click", function(e) {
+    e.stopPropagation();
   });
 </script>
 
+
 </body>
 </html>
+
